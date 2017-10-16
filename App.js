@@ -1,9 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
 import {
   Platform,
@@ -12,47 +6,193 @@ import {
   View,
   TextInput,
   Button,
-  Alert
+  Alert,
+  AppRegistry,
+  Image,
+  TouchableOpacity
+
 } from 'react-native';
+import { StackNavigator } from 'react-navigation';
 
-// const instructions = Platform.select({
-//   ios: 'Press Cmd+R to reload,\n' +
-//   'Cmd+D or shake for dev menu',
-//   android: 'Double tap R on your keyboard to reload,\n' +
-//   'Shake or press menu button for dev menu\n' +
-//   '-by Chanaka-',
-// });
+// import Login from './App/Views/Login';
 
-export default class App extends Component<{}> {
+// class LoginScreen extends Component {
+//   static navigationOptions = {
+//     title: 'Login',
+//   };
+//   render() {
+//     const { navigate } = this.props.navigation;
+//     return (
+//       <View style={styles.container}>
+//         <Text style={styles.welcome}>
+//           Welcome to Partner!
+//         </Text>
+//         <Text style={styles.instructions}>
+//           Could not find a life partner yet?
+//         </Text>
+//         <Text style={styles.instructions}>
+//           Login and enter your details. We will provide you a match.
+//         </Text>
+//         <TextInput style={styles.textinput}
+//           placeholder="Email"
+//         />
+//         <TextInput style={styles.textinput}
+//           placeholder="Password"
+//         />
+//         <Button
+//           onPress={() => navigate('Profile')}
+//           title="Login"
+//           color="#841584"
+//           accessibilityLabel="Click here to login"
+//         />
+
+//       </View>
+//     );
+//   }
+// }
+
+class HomeScreen extends Component {
+  static navigationOptions = {
+    title: 'Home',
+  };
   render() {
+    const { navigate } = this.props.navigation;
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to Partner!
-        </Text>
-        <Text style={styles.instructions}>
-          Couldn't find a life partner yet?
-        </Text>
-        <Text style={styles.instructions}>
-          Login and enter your details. We will provide you a match.
-        </Text>
-        <TextInput style={styles.textinput}
-          placeholder="Email"
-        />
-        <TextInput style={styles.textinput}
-          placeholder="Password"
-        />
+      <View>
+        <Image source={require('./App/img/partner.png')}
+          style={{ width: 180, height: 150 }} />
         <Button
-          onPress={showAlert}
+          onPress={() => navigate('Login')}
           title="Login"
-          color="#841584"
+
           accessibilityLabel="Click here to login"
         />
-
+        <Button
+          onPress={() => navigate('Profile')}
+          title="My Profile"
+          color="#041084"
+          accessibilityLabel="Click here to edit my profile"
+        />
+        <Button
+          onPress={() => navigate('Match')}
+          title="My Match"
+          color="#111154"
+          accessibilityLabel="Click here to find the match"
+        />
+        <TouchableOpacity onPress={showAlert}>
+          <Text>Left Button</Text>
+        </TouchableOpacity>
       </View>
     );
   }
 }
+
+class ProfileScreen extends Component {
+  static navigationOptions = {
+    title: 'My Profile',
+  };
+  render() {
+    const { navigate } = this.props.navigation;
+    return (
+      <View>
+        <Image source={require('./App/img/my-pic.jpg')}
+          style={{ width: 100, height: 100 }} />
+        {/* <Text>Name</Text> */}
+        <TextInput placeholder="Name" />
+        {/* <Text>Age</Text> */}
+        <TextInput placeholder="Age" />
+        {/* <Text>Adrress</Text> */}
+        <TextInput placeholder="Address" />
+        {/* <Text>Nationality</Text> */}
+        <TextInput placeholder="Nationality" />
+        {/* <Text>Straigt/Gay</Text> */}
+        <TextInput placeholder="Straight/Gay" />
+        {/* <Text>What do you expect</Text> */}
+        <TextInput placeholder="To talk / To time pass / Marry" />
+        <Button
+          onPress={showAlert}
+          title="Save" />
+        <Button
+          onPress={() => navigate('Match')}
+          title="Match"
+          color="#841584"
+          accessibilityLabel="Click here to find a match"
+        />
+      </View>
+    );
+  }
+}
+
+class MatchScreen extends Component {
+  static navigationOptions = {
+    title: 'Match',
+  };
+  render() {
+    const { navigate } = this.props.navigation;
+    return (
+      <View>
+        {/* <Text>Age</Text> */}
+        <TextInput placeholder="Age" />
+        {/* <Text>Adrress</Text> */}
+        <TextInput placeholder="Nationality" />
+        {/* <Text>Straigt/Gay</Text> */}
+        <TextInput placeholder="Straight/Gay" />
+        {/* <Text>What do you expect</Text> */}
+        <TextInput placeholder="To talk / To time pass / Marry" />
+        <Button
+          onPress={() => navigate('Chat')}
+          title="Chat"
+          accessibilityLabel="Click here to chat"
+        />
+      </View>
+    );
+  }
+}
+
+class ChatScreen extends Component {
+  static navigationOptions = {
+    title: 'Send Message',
+  };
+  render() {
+    const { navigate } = this.props.navigation;
+    return (
+      <View>
+        {/* <Text>Name</Text> */}
+        <TextInput placeholder="Name" />
+        {/* <Text>Age</Text> */}
+        <TextInput placeholder="Age" />
+        {/* <Text>Adrress</Text> */}
+        <TextInput placeholder="Address" />
+        {/* <Text>Nationality</Text> */}
+        <TextInput placeholder="Nationality" />
+        {/* <Text>Straigt/Gay</Text> */}
+        <TextInput placeholder="Straight/Gay" />
+        {/* <Text>What do you expect</Text> */}
+        <TextInput placeholder="To talk / To time pass / Marry" />
+        <Button
+          onPress={showAlert}
+          title="Send" />
+      </View>
+    );
+  }
+}
+
+export const SimpleApp = StackNavigator({
+  Home: { screen: HomeScreen },
+  Profile: { screen: ProfileScreen },
+  // Login: { screen: LoginScreen },
+  Match: { screen: MatchScreen },
+  Chat: { screen: ChatScreen },
+
+
+});
+
+export default class App extends React.Component {
+  render() {
+    return <SimpleApp />;
+  }
+}
+
 
 const styles = StyleSheet.create({
   container: {
@@ -73,7 +213,7 @@ const styles = StyleSheet.create({
   },
   textinput: {
     height: 40,
-    width: 100,
+    width: 250,
     borderColor: 'gray',
     borderWidth: 1,
   },
