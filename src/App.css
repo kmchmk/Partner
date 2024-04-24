@@ -171,14 +171,19 @@ body {
   border: 1px solid #ddd;
   padding: 20px;
   margin-bottom: 20px;
-  /* Other styling */
+  width: 45%;
 }
 
 .profile-list {
-  display: flex;
-  flex-direction: column;
-  /* Other styling */
+   width: 100%;
+   display: flex;
 }
+
+.home-sections {
+  width: 100%;
+  display: flex;
+}
+
 
 /* Use a media query for responsive layout */
 @media (min-width: 768px) {
