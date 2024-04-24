@@ -1,0 +1,194 @@
+/* Reset link styles */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Container for the entire navigation */
+.navigation-container {
+  font-family: "Arial", sans-serif;
+}
+
+/* The navigation bar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 100;
+}
+
+/* Logo and navigation links */
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #5d5dff;
+}
+
+.nav-links a {
+  margin: 0 1rem;
+  font-size: 1rem;
+  color: #333;
+  position: relative;
+}
+
+.nav-links a::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 2px;
+  background: #5d5dff;
+  transition: width 0.3s;
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* Buttons/Actions on the navigation */
+.nav-actions {
+  display: flex;
+  align-items: center;
+}
+
+.dashboard-btn,
+.login-btn {
+  padding: 0.5rem 1rem;
+  margin-left: 1rem;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.dashboard-btn {
+  background-color: transparent;
+  color: #5d5dff;
+}
+
+.login-btn {
+  background-color: #5d5dff;
+  color: white;
+}
+
+.login-btn:hover {
+  background-color: #4c4cff;
+}
+
+/* Spacing for content to ensure it doesn't hide behind the fixed navbar */
+body {
+  padding-top: 70px;
+}
+
+/* Add this to ensure the content fits within the window width */
+.navigation-container {
+  max-width: 100%;
+  box-sizing: border-box; /* Make sure padding and borders are included in the width */
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between; /* Space out logo and nav-items */
+  align-items: center;
+  padding: 0.4rem; /* Add padding on the sides */
+}
+
+/* Logo styling */
+.logo a {
+  display: block; /* This will allow padding and margin to be applied correctly */
+  padding: 0.5rem 0; /* Add some padding */
+}
+
+/* Navigation links */
+
+.nav-links a {
+  padding: 0.5rem; /* Add padding to each link for spacing */
+  margin-right: 1rem; /* Add margin between links */
+}
+
+/* Ensure this element does not force the width beyond the viewport */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  white-space: nowrap; /* Prevent the content from wrapping */
+  padding-right: 100px;
+}
+
+/* Logo styling */
+.logo {
+    flex: 0 1 auto; /* don't grow, allow shrink, auto basis */
+  }
+  
+  /* Navigation links */
+  .nav-links {
+    flex: 1 1 auto; /* allow grow, allow shrink, auto basis */
+    display: flex;
+    justify-content: center; /* Center the links */
+    padding-left: 0;
+    margin: 0;
+    /* Reduce the margin if needed */
+  }
+  
+  .nav-links a {
+    padding: 0.5rem;
+    margin-right: 0.5rem; /* Reduced margin */
+  }
+  
+  /* Actions (like login button) */
+  .nav-actions {
+    flex: 0 1 auto; /* don't grow, allow shrink, auto basis */
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  /* Adjustments for smaller screens */
+  @media (max-width: 768px) {
+    .navbar {
+      flex-wrap: wrap;
+    }
+    
+    .nav-links, .nav-actions {
+      justify-content: center;
+      flex-basis: 100%; /* Make them stack on smaller screens */
+    }
+  }
+
+  /* App.css */
+.filter-sidebar {
+  width: 300px; /* Adjust as needed */
+  /* Other styling */
+}
+
+.profile-card {
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin-bottom: 20px;
+  /* Other styling */
+}
+
+.profile-list {
+  display: flex;
+  flex-direction: column;
+  /* Other styling */
+}
+
+/* Use a media query for responsive layout */
+@media (min-width: 768px) {
+  .main-content {
+    display:inline-table;
+  }
+}
+.profile-card {
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin-bottom: 20px;
+  /* Additional styles to match the reference image */
+}
