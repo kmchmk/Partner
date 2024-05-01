@@ -1,0 +1,41 @@
+.person-card {
+    display: flex;
+    background: #FFF;
+    background-color: #ffffff;
+    color: #333;
+    border: 1px solid #CCC;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+  
+  .person-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 20px;
+  }
+  
+  .person-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  
+  .details-button {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .details-button:hover {
+    background-color: #0056b3;
+  }
+  .person-card h3, .person-card p {
+    color: #333; /* Dark gray color for better visibility */
+  }

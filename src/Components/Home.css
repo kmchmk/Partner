@@ -1,0 +1,50 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #1a1a1a; /* Dark background for better contrast */
+  color: white;
+  width: 100%; /* Full width */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Optional: adds shadow for depth */
+}
+
+.logo {
+  font-size: 24px; /* Larger font size for visibility */
+  font-weight: bold; /* Makes text bold */
+}
+
+.nav-links {
+  list-style-type: none;
+  padding: 0;
+  display: flex; /* Ensures horizontal layout */
+  margin: 0;
+}
+
+.nav-links li {
+  margin-right: 20px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+
+.nav-links a:hover {
+  color: #ccc; /* Lighter color on hover for interaction feedback */
+}
+
+.login-section button {
+  padding: 8px 16px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.login-section button:hover {
+  background-color: #0056b3;
+}
