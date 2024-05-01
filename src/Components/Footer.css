@@ -1,27 +1,35 @@
 .site-footer {
-  width: 100%;  
+  width: 100%;
   background-color: #25083a;
   color: white;
-  padding: 20px 0;
-  box-shadow: 0 -2px 5px rgba(0,0,0,0.15); 
+  padding: 10px 0;
+  box-shadow: 0 -2px 5px rgba(0,0,0,0.15);
 }
+
 .footer-content {
   display: flex;
-  justify-content: space-between;  
+  justify-content: space-between;
   align-items: center;
   width: 100%;
-  max-width: 1200px;  
-  margin: 0 auto;  
-  padding: 0 20px;  
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
 .footer-section {
   display: flex;
   flex-direction: column;
-  align-items: center;  
+  align-items: center;
 }
+
 .footer-section h5 {
   margin-bottom: 10px;
+}
+
+.footer-section img {
+  width: 50px;  /* Adjust this value as needed */
+  height: auto;  /* Maintains the aspect ratio */
+  margin-top: 10px;  /* Optional: adds some space above the images */
 }
 
 .footer-section ul {
@@ -32,10 +40,14 @@
 .footer-section ul li a {
   color: white;
   text-decoration: none;
-  padding: 2px 0;  
+  padding: 2px 0;
 }
+
 .site-footer {
-  width: 100%;
-  position: relative;  
-  clear: both;  
+  position: relative;
+  clear: both;
+}
+.main-content {
+  margin-bottom: 0px;  /* Reduce or remove bottom margin */
+  padding-bottom: 0px;  /* Reduce or remove bottom padding */
 }

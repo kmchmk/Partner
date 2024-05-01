@@ -1,5 +1,7 @@
 import React from "react";
 import "./Filters.css";
+import Accordion from 'react-bootstrap/Accordion';
+import Form from 'react-bootstrap/Form';
 
 const lookingFor = "Male";
 const age = "23";
@@ -58,6 +60,22 @@ export default function Filters() {
           <option value="Sri Lanka">Sri Lanka</option>
           {/* Add more countries as needed */}
         </select>
+      </div>
+      <div>
+        <Accordion defaultActiveKey="0">
+          <Accordion.Item eventKey="0">
+            <Accordion.Header>Religion</Accordion.Header>
+            <Accordion.Body>
+            <>
+              <Form.Check type="radio" aria-label="radio 1" label="Christian"/>
+              <Form.Check type="radio" aria-label="radio 2" label="Buddhist"/> 
+              <Form.Check type="radio" aria-label="radio 3" label="Hindu"/> 
+              <Form.Check type="radio" aria-label="radio 4" label="Islam"/>
+              <Form.Check type="radio" aria-label="radio 4" label="Other"/>   
+            </>
+            </Accordion.Body>
+          </Accordion.Item>
+        </Accordion>
       </div>
       <ul>
         <li>District :{myObj.district}</li>

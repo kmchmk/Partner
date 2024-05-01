@@ -8,7 +8,7 @@ export default function Footer() {
         <div className="footer-section">
           <h5>Connect with us</h5>
           <a href="https://www.facebook.com"><img src="https://cdn3.iconfinder.com/data/icons/ultimate-social/150/03_facebook-512.png" alt="Facebook" /></a>
-          <a href="https://www.instagram.com"><img src="/icons/instagram-icon.png" alt="Instagram" /></a>
+          <a href="https://www.instagram.com"><img src="https://cdn4.iconfinder.com/data/icons/social-media-logos-6/512/62-instagram-512.png" alt="Instagram" /></a>
         </div>
         <div className="footer-section">
           <h5>Quick Links</h5>

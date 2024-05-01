@@ -2,7 +2,7 @@ import React from 'react'
 import PersonCard from './PersonCard';
 
 const people = [
-    { id: 1, name: 'Chamika T', image: '/path-to-image.jpg', location: 'Ambalangoda, Sri Lanka', age: 29, ethnicity: 'Sinhalese', caste: 'Karawa', religion: 'Buddhist', profession: 'Other' },
+    { id: 1, name: 'Chamika T', image: './Images/image1.jpg', location: 'Ambalangoda, Sri Lanka', age: 29, ethnicity: 'Sinhalese', caste: 'Karawa', religion: 'Buddhist', profession: 'Other' },
     { id: 2, name: 'Kanchana P', image: '/path-to-image.jpg', location: 'Birmingham, United Kingdom', age: 43, ethnicity: 'Sinhalese', caste: 'Unknown', religion: 'Christian', profession: 'Accountant' },
   ];
 
