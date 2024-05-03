@@ -1,5 +1,7 @@
 .person-card {
-    display: flex;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content:space-around; /* Adjust this as needed */
     background: #FFF;
     background-color: #ffffff;
     color: #333;
