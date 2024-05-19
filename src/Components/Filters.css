@@ -1,25 +1,48 @@
-.filters-container {
-    width: 250px; /* Adjust width as needed */
-    position: fixed; /* Makes the sidebar fixed during scroll */
-    left: 0;
-    top: 0;
-    height: 100%;
-    background-color: #f8f9fa; /* Light grey background */
-    color: #333; /* Dark gray text for readability */
-    padding: 20px;
-    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-    overflow-y: auto; /* Allows scrolling within the sidebar */
-  }
-  
-  .filter-title {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 20px;
-  }
-  
-  .filter-group {
-    margin-bottom: 20px;
-  }
-  .filter-group label, .filter-group input, .filter-group select {
-    color: #333; /* Ensuring the text is visible */
-  }
+/* Filters.css */
+.filter-container {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* Make sure this is set to hide all overflowing content */
+  width: 0; /* Start with no width */
+  transition: width 0.3s ease-in-out; /* Smooth transition for the width */
+}
+
+.sidebar {
+  width: 250px; /* Fixed width when open */
+  transform: translateX(-100%); /* Start off-screen */
+  transition: transform 0.3s ease-in-out; /* Smooth transition for transform */
+  background-color: #f4f4f4; /* Background color */
+}
+
+.sidebar.open {
+  transform: translateX(0); /* Move into view */
+  width: 250px; /* Ensure width is set when open */
+}
+
+.toggle-button {
+  position: fixed; /* Ensure it's fixed relative to the viewport */
+  left: 0; /* Position at the left edge of the viewport */
+  top: 0; /* Position at the top */
+  z-index: 1010; /* Higher z-index to keep it above other content */
+  cursor: pointer;
+  background-color: #ccc;
+  border: none;
+  height: 40px;
+  width: 40px;
+  text-align: center;
+  line-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Additional CSS to ensure content inside the sidebar also transitions out */
+.filter-content {
+  width: 100%;
+  transition: opacity 0.3s ease-in-out;
+  opacity: 1;
+}
+
+.sidebar.closed .filter-content {
+  opacity: 0; /* Fade out content */
+}

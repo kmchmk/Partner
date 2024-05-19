@@ -41,7 +41,12 @@ const Filters = () => {
       }
     });
   };
-  
+
+  const [isOpen, setIsOpen] = useState(true);
+
+    const toggleSidebar = () => {
+        setIsOpen(!isOpen);
+    }; 
 
   const handleCountryChange = (event) => {
     const selectedOptions = Array.from(event.target.selectedOptions, (option) => option.value);
@@ -249,6 +254,8 @@ const Filters = () => {
   ];
   return (
     <div className="filters-container">
+      <div className={`sidebar ${isOpen ? 'open' : 'closed'}`}>
+      <div className={`sidebar ${isOpen ? 'open' : 'closed'}`}></div>
       <div className="filter-title">I'm looking for</div>
       <div className="filter-group">
         <div>
@@ -396,6 +403,11 @@ const Filters = () => {
           {/* Other Accordion items remain unchanged */}
         </Accordion>
      </div>
+            </div>
+            <button className="toggle-button" onClick={toggleSidebar}>
+                {isOpen ? '<<' : '>>'}
+            </button>
+      
     </div>
   );
 };
