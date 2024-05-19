@@ -1,26 +1,47 @@
 import React, { useState } from 'react';
 import "./Filters.css";
-import Accordion from 'react-bootstrap/Accordion';
-import Form from 'react-bootstrap/Form';
+import { Accordion, Form } from 'react-bootstrap';
 import Select from 'react-select';
 
 const Filters = () => {
   // State to keep track of open accordion keys
-  const [openKey, setOpenKey] = useState(null);
+  const [selectedReligion, setSelectedReligion] = useState('');
   const [smoking, setSmoking] = useState('');
   const [differentlyAbled, setDifferentlyAbled] = useState('');
+  const [country, setCountry] = useState('');
+  const [openKey, setOpenKey] = useState('');
+  const [selectedReligions, setSelectedReligions] = useState([]);
+  const [religionOpenKey, setReligionOpenKey] = useState('');
+  const [civilStatusOpenKey, setCivilStatusOpenKey] = useState('');
+  const [educationLevelOpenKey, setEducationLevelOpenKey] = useState('');
 
-  const toggleAccordion = (key) => {
-    if (openKey === key) {
-      setOpenKey(null); // Close if it's already open
-    } else {
-      setOpenKey(key); // Open the clicked one
-    }
+  const toggleAccordion = key => {
+    setOpenKey(openKey === key ? '' : key);
   };
+
   const handleSmokingChange = (event) => {
     setSmoking(event.target.value);
   };
   const [selectedCountries, setSelectedCountries] = useState([]);
+
+  const handleRadioChange = (event, value, currentValue, setter) => {
+    setter(currentValue === value ? '' : value);
+  };
+
+  const handleReligionChange = (event) => {
+    const value = event.target.value;
+    setSelectedReligions(prev => {
+      // Check if the value is already in the array
+      if (prev.includes(value)) {
+        // If it is, remove it (toggle off)
+        return prev.filter(item => item !== value);
+      } else {
+        // Otherwise, add it (toggle on)
+        return [...prev, value];
+      }
+    });
+  };
+  
 
   const handleCountryChange = (event) => {
     const selectedOptions = Array.from(event.target.selectedOptions, (option) => option.value);
@@ -259,80 +280,122 @@ const Filters = () => {
           }}
         />
       </div>
-      <div>
-        <Accordion activeKey={openKey}>
-          <Accordion.Item eventKey="1">
-            <Accordion.Header onClick={() => toggleAccordion('1')}>Religion</Accordion.Header>
-            <Accordion.Body>
-              <Form.Check type="radio" aria-label="Christian" label="Christian"/>
-              <Form.Check type="radio" aria-label="Buddhist" label="Buddhist"/>
-              <Form.Check type="radio" aria-label="Hindu" label="Hindu"/>
-              <Form.Check type="radio" aria-label="Islam" label="Islam"/>
-              <Form.Check type="radio" aria-label="Other" label="Other"/>
-            </Accordion.Body>
-          </Accordion.Item>
-          <Accordion.Item eventKey="2">
-            <Accordion.Header onClick={() => toggleAccordion('2')}>Smoking</Accordion.Header>
-            <Accordion.Body>
-              <Form.Check 
-                  type="radio" 
-                  id="no-smoking" 
-                  name="smoking" 
-                  value="No" 
-                  label="No"
-                  checked={smoking === 'Yes'} 
-                  onChange={handleSmokingChange}
-                />
-                <Form.Check 
-                  type="radio" 
-                  id="yes-smoking" 
-                  name="smoking" 
-                  value="Yes" 
-                  label="Yes" 
-                  checked={smoking === 'Yes'} 
-                  onChange={handleSmokingChange}
-                />
-            </Accordion.Body>
-          </Accordion.Item>
-          <Accordion.Item eventKey="3">
-            <Accordion.Header onClick={() => toggleAccordion('3')}>Differently Abled</Accordion.Header>
-            <Accordion.Body>
-            <Form.Check 
-              type="radio" 
-              id="no-smoking" 
-              name="smoking" 
-              value="No" 
-              label="No" 
-              checked={differentlyAbled === 'No'} 
-              onChange={setDifferentlyAbled}
-              />
-            <Form.Check 
-              type="radio" 
-              id="yes-smoking" 
-              name="smoking" 
-              value="Yes" 
-              label="Yes" 
-              checked={differentlyAbled === 'Yes'} 
-              onChange={setDifferentlyAbled}
-            />
-            </Accordion.Body>
-          </Accordion.Item>
-        </Accordion>
-      </div>
-  
       <ul>
         <li>District: Thelagana</li>
-        <li>Ethnicity: Sinhala</li>
-        <li>Religion: Muslim</li>
-        <li>Civil Status: Single</li>
+      </ul>
+      <div>
+      <Accordion activeKey={religionOpenKey}>
+        <Accordion.Item eventKey="1">
+          <Accordion.Header onClick={() => setReligionOpenKey(religionOpenKey ? '' : '1')}>Religion</Accordion.Header>
+          <Accordion.Body>
+            {['Christian', 'Buddhist', 'Hindu', 'Islam', 'Other'].map(religion => (
+              <Form.Check
+                key={religion}
+                type="checkbox"
+                name="religions"
+                value={religion}
+                label={religion}
+                checked={selectedReligions.includes(religion)}
+                onChange={handleReligionChange}
+              />
+            ))}
+          </Accordion.Body>
+        </Accordion.Item>
+      </Accordion>
+     </div>
+     
+     <div>
+     <Accordion activeKey={civilStatusOpenKey}>
+        <Accordion.Item eventKey="1">
+          <Accordion.Header onClick={() => setCivilStatusOpenKey(civilStatusOpenKey ? '' : '1')}>Civil Status</Accordion.Header>
+          <Accordion.Body>
+            {['Divorced', 'Engaged', 'Married', 'Separated', 'Single', 'Widowed'].map(status => (
+              <Form.Check
+                key={status}
+                type="checkbox"
+                name="civilStatus"
+                value={status}
+                label={status}
+                checked={selectedReligions.includes(status)}
+                onChange={handleReligionChange}
+              />
+            ))}
+          </Accordion.Body>
+        </Accordion.Item>
+      </Accordion>
+     </div>
+
+     <div>
+     <Accordion activeKey={educationLevelOpenKey}>
+        <Accordion.Item eventKey="1">
+          <Accordion.Header onClick={() => setEducationLevelOpenKey(educationLevelOpenKey ? '' : '1')}>Education Level</Accordion.Header>
+          <Accordion.Body>
+            {['Associate Degree', 'Bachelor Degree', 'Doctorate', 'Professional Degree', 'High School Diploma or Equivalent', 'Master Degree', 'College', 'High School'].map(edu => (
+              <Form.Check
+                key={edu}
+                type="checkbox"
+                name="education"
+                value={edu}
+                label={edu}
+                checked={selectedReligions.includes(edu)}
+                onChange={handleReligionChange}
+              />
+            ))}
+          </Accordion.Body>
+        </Accordion.Item>
+      </Accordion>
+     </div>
+  
+      <ul>
         <li>Profession: Driver</li>
-        <li>Education Level: MSc</li>
         <li>Height: 176</li>
         <li>Weight: 70</li>
         <li>Food Preference: Vegan</li>
         <li>Drinking: No</li>
         <li>Smoking: No</li>
       </ul>
+      <div>
+        <Accordion activeKey={openKey}>
+          <Accordion.Item eventKey="1">
+            <Accordion.Header onClick={() => toggleAccordion('1')}>Drinking</Accordion.Header>
+            <Accordion.Body>
+              {['Yes', 'No'].map(drinking => (
+                <Form.Check 
+                  key={drinking}
+                  type="checkbox" // Changed from radio to checkbox
+                  name="drinking"
+                  value={drinking}
+                  label={drinking}
+                  checked={selectedReligions.includes(drinking)} // Check if religion is selected
+                  onChange={handleReligionChange}
+                />
+              ))}
+            </Accordion.Body>
+          </Accordion.Item>
+          {/* Other Accordion items remain unchanged */}
+        </Accordion>
+     </div>
+      <div>
+        <Accordion activeKey={openKey}>
+          <Accordion.Item eventKey="1">
+            <Accordion.Header onClick={() => toggleAccordion('1')}>Smoking</Accordion.Header>
+            <Accordion.Body>
+              {['Yes', 'No'].map(smoking => (
+                <Form.Check 
+                  key={smoking}
+                  type="checkbox" // Changed from radio to checkbox
+                  name="smoking"
+                  value={smoking}
+                  label={smoking}
+                  checked={selectedReligions.includes(smoking)} // Check if religion is selected
+                  onChange={handleReligionChange}
+                />
+              ))}
+            </Accordion.Body>
+          </Accordion.Item>
+          {/* Other Accordion items remain unchanged */}
+        </Accordion>
+     </div>
     </div>
   );
 };
