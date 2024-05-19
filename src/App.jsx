@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./Layout";
 import Home from "./Home";
 import About from "./About";
-import Terms from "./Terms"
+import Terms from "./Terms";
 import Privacy from "./Privacy";
 
 function App() {
@@ -11,7 +11,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route
-          path="/Partner"
+          path="/"
           element={
             <Layout>
               <Home />
@@ -19,7 +19,7 @@ function App() {
           }
         />
         <Route
-          path="/Partner/about"
+          path="/about"
           element={
             <Layout>
               <About />
@@ -27,7 +27,7 @@ function App() {
           }
         />
         <Route
-          path="/Partner/privacy"
+          path="/privacy"
           element={
             <Layout>
               <Privacy />
@@ -35,7 +35,7 @@ function App() {
           }
         />
         <Route
-          path="/Partner/terms"
+          path="/terms"
           element={
             <Layout>
               <Terms />
