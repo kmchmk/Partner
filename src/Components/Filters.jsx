@@ -240,9 +240,6 @@ const Filters = () => {
         <label>Age</label>
         <input type="number" placeholder="18" /> to <input type="number" placeholder="60" />
       </div>
-      
-      <div className="filters-container">
-      {/* Other filter components */}
       <div className="filter-group">
         <label>Country of Residence</label>
         <Select
@@ -261,8 +258,6 @@ const Filters = () => {
             menu: (provided) => ({ ...provided, zIndex: 9999 })
           }}
         />
-        </div>
-      {/* Other parts of your Filters component */}
       </div>
       <div>
         <Accordion activeKey={openKey}>
