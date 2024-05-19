@@ -11,7 +11,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route
-          path="/"
+          path="/Partner"
           element={
             <Layout>
               <Home />
@@ -19,7 +19,7 @@ function App() {
           }
         />
         <Route
-          path="/about"
+          path="/Partner/about"
           element={
             <Layout>
               <About />
@@ -27,7 +27,7 @@ function App() {
           }
         />
         <Route
-          path="/privacy"
+          path="/Partner/privacy"
           element={
             <Layout>
               <Privacy />
@@ -35,7 +35,7 @@ function App() {
           }
         />
         <Route
-          path="/terms"
+          path="/Partner/terms"
           element={
             <Layout>
               <Terms />

@@ -10,8 +10,8 @@ export default function Header() {
       </div>
       <nav className="navigation">
         <ul className="nav-links">
-          <li><a href="about">About</a></li>
-          <li><a href="services">Services</a></li>
+          <li><a href="Partner/about">About</a></li>
+          <li><a href="Partner/services">Services</a></li>
         </ul>
       </nav>
       <div className="login-section">
