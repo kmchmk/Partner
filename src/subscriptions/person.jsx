@@ -6,12 +6,18 @@ const GET_PERSON = gql`
       id
       name
       age
+      gender
       caste
       ethnicity
       image
       location
       profession
       religion
+      civil_status
+      education_level
+      drinking
+      smoking
+      bio
     }
   }
 `;
