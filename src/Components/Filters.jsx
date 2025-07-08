@@ -5,10 +5,10 @@ import Select from 'react-select';
 
 const Filters = () => {
   // State to keep track of open accordion keys
-  const [selectedReligion, setSelectedReligion] = useState('');
-  const [smoking, setSmoking] = useState('');
-  const [differentlyAbled, setDifferentlyAbled] = useState('');
-  const [country, setCountry] = useState('');
+  // const [selectedReligion, setSelectedReligion] = useState('');
+  // const [smoking, setSmoking] = useState('');
+  // const [differentlyAbled, setDifferentlyAbled] = useState('');
+  // const [country, setCountry] = useState('');
   const [openKey, setOpenKey] = useState('');
   const [selectedReligions, setSelectedReligions] = useState([]);
   const [religionOpenKey, setReligionOpenKey] = useState('');
@@ -19,14 +19,14 @@ const Filters = () => {
     setOpenKey(openKey === key ? '' : key);
   };
 
-  const handleSmokingChange = (event) => {
-    setSmoking(event.target.value);
-  };
+  // const handleSmokingChange = (event) => {
+  //   setSmoking(event.target.value);
+  // };
   const [selectedCountries, setSelectedCountries] = useState([]);
 
-  const handleRadioChange = (event, value, currentValue, setter) => {
-    setter(currentValue === value ? '' : value);
-  };
+  // const handleRadioChange = (event, value, currentValue, setter) => {
+  //   setter(currentValue === value ? '' : value);
+  // };
 
   const handleReligionChange = (event) => {
     const value = event.target.value;

@@ -5,6 +5,10 @@ import Home from "./Home";
 import About from "./About";
 import Terms from "./Terms";
 import Privacy from "./Privacy";
+import SignUp from "./Components/Auth/SignUp";
+import UserProfile from "./Components/UserProfile/UserProfile";
+import UserProfileEdit from "./Components/UserProfile/UserProfileEdit";
+import ProfileVerification from "./Components/UserProfile/ProfileVerification";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import { WebSocketLink } from "@apollo/client/link/ws";
 
@@ -61,6 +65,46 @@ function App() {
             element={
               <Layout>
                 <Terms />
+              </Layout>
+            }
+          />
+          <Route
+            path="/signup"
+            element={
+              <Layout>
+                <SignUp />
+              </Layout>
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <Layout>
+                <SignUp />
+              </Layout>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <Layout>
+                <UserProfile />
+              </Layout>
+            }
+          />
+          <Route
+            path="/profile/edit"
+            element={
+              <Layout>
+                <UserProfileEdit />
+              </Layout>
+            }
+          />
+          <Route
+            path="/profile/verify"
+            element={
+              <Layout>
+                <ProfileVerification />
               </Layout>
             }
           />
