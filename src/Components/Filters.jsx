@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import "./Filters.css";
 import { Accordion, Form } from 'react-bootstrap';
 import Select from 'react-select';
@@ -26,7 +26,22 @@ const Filters = ({ onFiltersChange }) => {
     smoking: ''
   });
 
-  const [isOpen, setIsOpen] = useState(true);
+  // Set initial sidebar state based on screen size  
+  const [isOpen, setIsOpen] = useState(false); // Always start closed, will be set correctly in useEffect
+
+  // Handle window resize for responsive behavior
+  useEffect(() => {
+    const handleResize = () => {
+      const isMobile = window.innerWidth <= 768;
+      setIsOpen(!isMobile); // Open on desktop, closed on mobile
+    };
+
+    // Set initial state correctly based on window size
+    handleResize();
+    
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
@@ -37,6 +52,22 @@ const Filters = ({ onFiltersChange }) => {
       ...prev,
       [key]: prev[key] === '1' ? '' : '1'
     }));
+  };
+
+  const clearAllFilters = () => {
+    const clearedFilters = {
+      gender: '',
+      ageMin: 18,
+      ageMax: 60,
+      countries: [],
+      religions: [],
+      civilStatus: [],
+      educationLevel: [],
+      drinking: [],
+      smoking: []
+    };
+    setFilters(clearedFilters);
+    updateFilters(clearedFilters);
   };
 
   // Update filters and notify parent component
@@ -454,6 +485,24 @@ const Filters = ({ onFiltersChange }) => {
                 </Accordion.Body>
               </Accordion.Item>
             </Accordion>
+          </div>
+
+          {/* Filter Action Buttons */}
+          <div className="filter-actions">
+            <button 
+              className="btn btn-clear" 
+              onClick={clearAllFilters}
+              type="button"
+            >
+              Clear All
+            </button>
+            <button 
+              className="btn btn-apply" 
+              onClick={() => setIsOpen(window.innerWidth <= 768 ? false : isOpen)}
+              type="button"
+            >
+              Apply Filters
+            </button>
           </div>
         </div>
       </div>

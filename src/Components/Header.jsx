@@ -22,12 +22,6 @@ export default function Header() {
       </div>
       <nav className="navigation">
         <ul className="nav-links">
-          <li>
-            <a href="/about">About</a>
-          </li>
-          <li>
-            <a href="services">Services</a>
-          </li>
           {isAuthenticated && (
             <li>
               <button 
@@ -62,6 +56,9 @@ export default function Header() {
               </button>
             </li>
           )}
+          <li>
+            <a href="/about">About</a>
+          </li>
         </ul>
       </nav>
       <Login />
