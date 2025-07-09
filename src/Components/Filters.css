@@ -200,6 +200,46 @@
   color: white;
 }
 
+/* Filter Action Buttons */
+.filter-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid #dee2e6;
+}
+
+.filter-actions .btn {
+  flex: 1;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 14px;
+}
+
+.btn-clear {
+  background: linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%);
+  color: white;
+}
+
+.btn-clear:hover {
+  background: linear-gradient(135deg, #7f8c8d 0%, #95a5a6 100%);
+  transform: translateY(-1px);
+}
+
+.btn-apply {
+  background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+  color: white;
+}
+
+.btn-apply:hover {
+  background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+  transform: translateY(-1px);
+}
+
 /* Scrollbar styling */
 .sidebar::-webkit-scrollbar {
   width: 6px;
@@ -216,4 +256,79 @@
 
 .sidebar::-webkit-scrollbar-thumb:hover {
   background: #2980b9;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100% !important;
+    transform: translateX(-100%);
+  }
+  
+  .sidebar.open {
+    transform: translateX(0);
+  }
+  
+  .toggle-button {
+    display: block;
+    position: fixed;
+    top: 90px;
+    left: 20px;
+    z-index: 9999;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 18px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  }
+  
+  .sidebar.open ~ .toggle-button {
+    left: calc(100% - 70px);
+  }
+  
+  .filter-content {
+    padding: 15px;
+  }
+  
+  .filter-title {
+    font-size: 1.1em;
+    margin-bottom: 15px;
+  }
+  
+  .filter-group {
+    margin-bottom: 15px;
+  }
+  
+  .filter-accordion .accordion-button {
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+    top: 50px;
+    height: calc(100vh - 50px);
+  }
+  
+  .toggle-button {
+    top: 60px;
+    width: 45px;
+    height: 45px;
+    font-size: 16px;
+  }
+  
+  .filter-content {
+    padding: 10px;
+  }
+  
+  .age-inputs {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .age-inputs span {
+    text-align: center;
+    font-weight: 600;
+  }
 }
