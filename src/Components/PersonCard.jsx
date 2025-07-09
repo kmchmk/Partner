@@ -30,6 +30,8 @@ export default function PersonCard({ person }) {
           {person.ethnicity && <span className="detail-tag">{person.ethnicity}</span>}
           {person.religion && <span className="detail-tag">{person.religion}</span>}
           {person.profession && <span className="detail-tag">{person.profession}</span>}
+          {person.civil_status && <span className="detail-tag">{person.civil_status}</span>}
+          {person.education_level && <span className="detail-tag">{person.education_level}</span>}
         </div>
         
         {person.bio && (

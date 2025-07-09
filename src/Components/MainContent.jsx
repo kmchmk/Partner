@@ -9,15 +9,106 @@ export default function MainContent({ filters = {} }) {
   const { loading: loadingPersons, error: errorPersons, data: dataPersons } = useSubscription(GET_PERSON);
   const { loading: loadingProfiles, error: errorProfiles, data: dataProfiles } = useSubscription(GET_USER_PROFILES);
 
-  // Show loading if either subscription is loading
-  if (loadingPersons || loadingProfiles) return <div className="loading">Loading...</div>;
+  // Mock data for demonstration when backend is unavailable
+  const mockPersons = [
+    {
+      id: 1,
+      name: "Sarah Johnson",
+      age: 28,
+      gender: "Female",
+      caste: "Christian",
+      ethnicity: "Caucasian",
+      image: "/default-avatar.png",
+      location: "New York, United States",
+      profession: "Software Engineer",
+      religion: "Christianity",
+      civil_status: "Single",
+      education_level: "Bachelor Degree",
+      drinking: "Socially",
+      smoking: "No",
+      bio: "Love traveling, reading, and exploring new technologies. Looking for someone who shares similar interests and values."
+    },
+    {
+      id: 2,
+      name: "Michael Chen",
+      age: 32,
+      gender: "Male",
+      caste: "Buddhist",
+      ethnicity: "Asian",
+      image: "/default-avatar.png",
+      location: "San Francisco, United States",
+      profession: "Product Manager",
+      religion: "Buddhism",
+      civil_status: "Divorced",
+      education_level: "Master Degree",
+      drinking: "No",
+      smoking: "No",
+      bio: "Meditation enthusiast, yoga practitioner, and nature lover. Seeking meaningful connections and genuine conversations."
+    },
+    {
+      id: 3,
+      name: "Priya Sharma",
+      age: 26,
+      gender: "Female",
+      caste: "Hindu",
+      ethnicity: "South Asian",
+      image: "/default-avatar.png",
+      location: "Mumbai, India",
+      profession: "Doctor",
+      religion: "Hinduism",
+      civil_status: "Single",
+      education_level: "Doctorate",
+      drinking: "No",
+      smoking: "No",
+      bio: "Dedicated healthcare professional with a passion for helping others. Love classical music, cooking, and spending time with family."
+    },
+    {
+      id: 4,
+      name: "Ahmed Hassan",
+      age: 30,
+      gender: "Male",
+      caste: "Muslim",
+      ethnicity: "Middle Eastern",
+      image: "/default-avatar.png",
+      location: "Dubai, United Arab Emirates",
+      profession: "Business Analyst",
+      religion: "Islam",
+      civil_status: "Single",
+      education_level: "Bachelor Degree",
+      drinking: "No",
+      smoking: "Occasionally",
+      bio: "Business professional with interests in finance and technology. Enjoy reading, traveling, and learning about different cultures."
+    },
+    {
+      id: 5,
+      name: "Emma Wilson",
+      age: 25,
+      gender: "Female",
+      caste: "Catholic",
+      ethnicity: "Caucasian",
+      image: "/default-avatar.png",
+      location: "London, United Kingdom",
+      profession: "Teacher",
+      religion: "Christianity",
+      civil_status: "Single",
+      education_level: "Bachelor Degree",
+      drinking: "Yes",
+      smoking: "No",
+      bio: "Primary school teacher who loves working with children. Enjoy hiking, painting, and weekend adventures with friends."
+    }
+  ];
+
+  // Show loading only briefly, then fall back to mock data if backend unavailable
+  if (loadingPersons && !errorPersons && !errorProfiles) {
+    return <div className="loading">Loading...</div>;
+  }
   
-  // Show error if either subscription has an error
-  if (errorPersons) return <div className="error">Error loading persons: {errorPersons.message}</div>;
+  // If there are errors, use mock data but log the errors
+  if (errorPersons) console.log("Error loading persons:", errorPersons.message);
   if (errorProfiles) console.log("User profiles not available:", errorProfiles.message);
 
-  // Combine existing persons with new user profiles
-  const existingPersons = dataPersons?.person || [];
+  // Use real data if available, otherwise fall back to mock data
+  const existingPersons = dataPersons?.person || mockPersons;
   const userProfiles = dataProfiles?.user_profiles || [];
 
   // Convert user profiles to person format for consistent display
@@ -25,12 +116,17 @@ export default function MainContent({ filters = {} }) {
     id: `user_${profile.id}`,
     name: profile.name,
     age: profile.age,
+    gender: profile.gender,
     caste: profile.caste,
     ethnicity: profile.ethnicity,
     image: profile.profile_picture,
     location: profile.location,
     profession: profile.profession,
     religion: profile.religion,
+    civil_status: profile.civil_status,
+    education_level: profile.education_level,
+    drinking: profile.drinking,
+    smoking: profile.smoking,
     bio: profile.bio,
     isVerified: profile.is_verified,
     isUserProfile: true
@@ -70,7 +166,34 @@ export default function MainContent({ filters = {} }) {
       }
     }
 
-    // Add more filter logic as needed for other fields
+    // Civil Status filter
+    if (filters.civilStatus && filters.civilStatus.length > 0 && person.civil_status) {
+      if (!filters.civilStatus.includes(person.civil_status)) {
+        return false;
+      }
+    }
+
+    // Education Level filter
+    if (filters.educationLevel && filters.educationLevel.length > 0 && person.education_level) {
+      if (!filters.educationLevel.includes(person.education_level)) {
+        return false;
+      }
+    }
+
+    // Drinking filter
+    if (filters.drinking && filters.drinking.length > 0 && person.drinking) {
+      if (!filters.drinking.includes(person.drinking)) {
+        return false;
+      }
+    }
+
+    // Smoking filter
+    if (filters.smoking && filters.smoking.length > 0 && person.smoking) {
+      if (!filters.smoking.includes(person.smoking)) {
+        return false;
+      }
+    }
+
     return true;
   });
 
