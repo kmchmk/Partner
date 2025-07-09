@@ -99,7 +99,7 @@ export default function MainContent({ filters = {} }) {
   ];
 
   // Show loading only briefly, then fall back to mock data if backend unavailable
-  if (loadingPersons && !errorPersons && !errorProfiles) {
+  if ((loadingPersons || loadingProfiles) && !errorPersons && !errorProfiles) {
     return <div className="loading">Loading...</div>;
   }
   
